@@ -2,15 +2,17 @@ package zp.com.baidumapdemo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+
+import com.zpan.gaodelocation.LocationLibManager;
+import com.zpan.gaodelocation.bean.LocationFailedBean;
+import com.zpan.gaodelocation.bean.LocationSuccessBean;
+import com.zpan.gaodelocation.callback.GpsLocationCallback;
 import com.zpan.othermap.bean.StartAndEndInfo;
 import com.zpan.othermap.utils.GpsUtil;
 import com.zpan.othermap.bean.Location;
 import com.zpan.othermap.OtherMapManager;
-import zp.com.baidulocation.LocationLibManager;
-import zp.com.baidulocation.bean.LocationFailedBean;
-import zp.com.baidulocation.bean.LocationSuccessBean;
-import zp.com.baidulocation.callback.GpsLocationCallback;
 
 /**
  * @author zpan
@@ -54,21 +56,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initLocation() {
-
         LocationLibManager.getInstance().getLocation(this, new GpsLocationCallback() {
             @Override
             public void success(LocationSuccessBean response) {
                 // 定位成功
+                Log.e("shitou", "success");
             }
 
             @Override
             public void failed(LocationFailedBean response) {
                 // 定位失败
+                Log.e("shitou", "failed");
             }
 
             @Override
             public void complete() {
                 // 定位完成
+                Log.e("shitou", "complete");
             }
         });
     }
